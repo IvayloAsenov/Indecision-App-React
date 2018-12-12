@@ -1,4 +1,4 @@
-// count - setup default prop value to 0
+// parseInt(num, 10)
 
 class Counter extends React.Component {
     
@@ -11,6 +11,18 @@ class Counter extends React.Component {
         this.state = {
             count: props.count
         };
+    }
+
+    componentDidMount() {
+        try {
+            const count = parseInt(localStorage.getItem('count'), 10);
+            if (count) this.setState(() => ({count}));
+        } catch (e) {}
+    }
+
+    componentDidUpdate(prevProp, prevState) {
+        if (prevState.count === this.state.count) return;
+        localStorage.setItem('count', this.state.count);
     }
 
     handleReset() {
@@ -53,4 +65,4 @@ Counter.defaultProps = {
     count: 0
 };
 
-ReactDOM.render(<Counter count={55}/>, document.getElementById('app'));
+ReactDOM.render(<Counter />, document.getElementById('app'));
