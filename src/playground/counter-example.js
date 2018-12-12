@@ -1,3 +1,5 @@
+// count - setup default prop value to 0
+
 class Counter extends React.Component {
     
     constructor(props) {
@@ -7,7 +9,7 @@ class Counter extends React.Component {
         this.handleMinusOne = this.handleMinusOne.bind(this);
 
         this.state = {
-            count: 0
+            count: props.count
         };
     }
 
@@ -47,34 +49,8 @@ class Counter extends React.Component {
     }
 }
 
-ReactDOM.render(<Counter />, document.getElementById('app'));
+Counter.defaultProps = {
+    count: 0
+};
 
-// const addOne = () => {
-//     count++;
-//     renderCounterApp();
-// };
-
-// const minusOne = () => {
-//     count--;
-//     renderCounterApp();
-// }
-
-// const reset = () => {
-//     count = 0;
-//     renderCounterApp();
-// }
-
-// const renderCounterApp = () => {
-//     const templateTwo = (
-//         <div>
-//             <h1>Count: {count}</h1>
-//             <button onClick={addOne}>+1</button>
-//             <button onClick={minusOne}>-1</button>
-//             <button onClick={reset}>reset</button>
-//         </div>
-//     );
-
-//     ReactDOM.render(templateTwo, appRoot);
-// };
-
-// renderCounterApp();
+ReactDOM.render(<Counter count={55}/>, document.getElementById('app'));
